@@ -119,12 +119,25 @@ cout << "START :: V = " << test_cell.get_vol() << endl;
 cout << "turning ON the SW" << endl;
 
 test_cell.set_SW_state(1, _mA);
+float V_temp;
 for(int i=0; i<20; i++)
 {
-cout << i << ". " << test_cell.get_vol() << "Volts" << endl;
+//multiple enable/disable SW added to verify proper sequence of Battery voltage update
+
+test_cell.set_SW_state(0, _mA);
+test_cell.set_SW_state(1, _mA);
+V_temp = test_cell.get_vol();
+
+cout << i << ". " << V_temp << " V" << endl;
+
 usleep(1000000);
+
+test_cell.set_SW_state(0, _mA);
+test_cell.set_SW_state(1, _mA);
+
 }
 
+cout << "\nNOTE for TEST 9, OBSERVE THE SEQ ABOVE TO JUDGE IF IT MATCHES THE DISCHARGE CURVE\n\n";
 
 
 

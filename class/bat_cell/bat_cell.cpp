@@ -1,6 +1,7 @@
 #include "bat_cell.h"
 #include<iostream>
 
+//#define DEBUG_CELL
 
 //Bat_cell Contructor
 Bat_cell::Bat_cell()
@@ -67,7 +68,7 @@ int Bat_cell::set_vol(float v)
 {
 
 
-	if(v < 0.0)
+	if(v <= 0.0)
 	{
 		//voltage of battery can't be negitive
 		return -1; 
@@ -118,10 +119,10 @@ int Bat_cell::set_SW_state(bool sw_s, float load_curr)
 	// switch was ON, now turned OFF
 	else if( (!sw_s) && (SW_state))
 	{
+		//Don't change the order here[very IMPORTANT]
+		vol = get_updated_bat_vol();
 		//update voltage, when SW turns off
 		i_load_mA	= 0.0;
-		vol = get_updated_bat_vol();
-
 	}
 
 //update SW state
@@ -179,18 +180,19 @@ std::cout << " \t Q_drained " << Q_drained << std::endl ;
 //calculate Q_now
 	Q_now =	Q_at_last_update - Q_drained;
 
+#ifdef DEBUG_CELL
+std::cout << " \t Q_now " << Q_now << std::endl ;
+#endif	
+
 /*
 NOTE: 
 we are only calculating charge lost when either, 'vol' is read for the bat_cell class object, or when SW is closed or Opened, which is why 'Q_now' can be negitive here, in our calculations, as its just a battery model.
 */
 
 // update voltage based on current capacity	
-	if(Q_now <= 0 )
-	{	vol = V_cutoff;} // battery has been drained completely
-	else //Q_now > 0
-	{
+
 		vol = convert_Q_to_V(Q_now);
-	}
+
 
 }
 
@@ -201,7 +203,7 @@ double cal_V;
 //std::cout << "\n\n Bat_cell::convert_Q_to_V("<< _Q << ")" << std::endl;
 	//capacity can't be lower then Q_cutoff
 	if( _Q <= Q_cutoff)
-	return Q_cutoff;
+	return V_cutoff;
 
 	if(_Q < Q_nom)
 	{
@@ -243,7 +245,7 @@ long long int cal_Q;
 
 	//voltage can't be lower then V_cutoff
 	if( _v < V_cutoff)
-	return 0;
+	return Q_cutoff;
 
 	if(_v < V_nom)
 	{
