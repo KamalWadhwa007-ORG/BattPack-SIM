@@ -48,7 +48,7 @@ public:
 		int set_cap(int);
 		float get_updated_bat_vol();
 		double convert_Q_to_V(long long int);
-		long long int convert_V_to_Q(float _v);
+		long long int convert_V_to_Q(float _v)
 
 	
 

@@ -1,7 +1,6 @@
 #include "bat_cell.h"
 #include<iostream>
 
-
 //Bat_cell Contructor
 Bat_cell::Bat_cell()
 {	
@@ -162,20 +161,15 @@ float Bat_cell::get_updated_bat_vol()
 	time(&time_now);
 	diff_in_sec = difftime( time_now, time_on_last_update);
 
-#ifdef DEBUG_CELL
 std::cout << " \t time since last update = " << diff_in_sec << "secs";
-#endif
+
 	time(&time_on_last_update);	
 		
-#ifdef DEBUG_CELL
 std::cout << " \t i_load_mA" << i_load_mA;
-#endif
 	Q_drained = (int)(i_load_mA * diff_in_sec);// mAseconds unit
 
-#ifdef DEBUG_CELL
 std::cout << " \t Q_drained " << Q_drained << std::endl ;
-#endif	
-
+	
 //calculate Q_now
 	Q_now =	Q_at_last_update - Q_drained;
 
