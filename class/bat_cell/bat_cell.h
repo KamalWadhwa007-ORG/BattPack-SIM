@@ -74,6 +74,7 @@ public:
 		float get_i_load();
 
 		float get_V_cutoff();
+		float get_V_max();
 		float get_int_res();
 
 };

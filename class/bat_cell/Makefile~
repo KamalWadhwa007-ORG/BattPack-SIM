@@ -1,0 +1,5 @@
+
+all:
+	g++ -c -pthread bat-sim_REL.cpp ./class/bat_pack/3bat_pack.cpp ./class/bat_cell/bat_cell.cpp
+	g++ -pthread bat-sim_REL.o ./class/bat_pack/3bat_pack.o ./class/bat_cell/bat_cell.o
+

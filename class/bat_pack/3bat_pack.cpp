@@ -127,7 +127,7 @@ i for any bat cell n = (Vbatt_n - V on the R_load)/(series_Rn + internal_Rn);
 
 //save highest voltage
 temp_high_vbat= highest_vbat->get_vol();
-cout<<" \n\n debug -- HIGHEST VOLTAGE: " << temp_high_vbat;
+//cout<<" \n\n debug -- HIGHEST VOLTAGE: " << temp_high_vbat;
 
 _millman_N =0.0;
 _millman_D= (1/R_load);
@@ -190,7 +190,7 @@ for(int e =0; e <_N ; e++)
 			//adjust the millman's N and D
 			_millman_N -=temp_vbat;
 			_millman_D -=(1/temp_rbat);
-cout << "\n---------RECALC HIT !!!---------------\n";
+//cout << "\n---------RECALC HIT !!!---------------\n";
 			goto repeat_calc;
 		}
 
@@ -207,8 +207,10 @@ _millman_V_load =(_millman_N)/(_millman_D);
 
 cout << "\nvoltage/current available to load(R = "<< R_load <<") :: " << _millman_V_load << "V / " << (_millman_V_load/R_load) << "mA"<< endl; 
 
-cout << "for millman's debug N & D are " << _millman_N <<" "<<_millman_D ;
-cout << "\n\n SIMULATION in progress\n"<< endl;
+//cout << "for millman's debug N & D are " << _millman_N <<" "<<_millman_D ;
+cout << "\n\n NOTE: press ('.' + ENTER) any time to STOP Simulation \n"<< endl;
+cout << "\n\n\n\n\n\n\n\n\n\n SIMULATION in progress\n"<< endl;
+cout << "___________________________________________________"<< endl;
 time(&now);
 localtm =localtime(&now);
 //10 sec animation

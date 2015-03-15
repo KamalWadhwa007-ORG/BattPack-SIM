@@ -135,7 +135,7 @@ int Bat_cell::set_SW_state(bool sw_s, float load_curr)
 		//update voltage, when SW turns off
 		i_load_mA	= 0.0;
 
-	std::cout << " check ";
+	//std::cout << " check ";
 	}
 
 //update SW state
@@ -281,4 +281,5 @@ long long int cal_Q;
 return cal_Q;
 }
 
-
+float Bat_cell::get_V_max()
+{return V_max;}
