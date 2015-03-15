@@ -6,7 +6,7 @@
 //Bat_cell Contructor
 Bat_cell::Bat_cell()
 {	
-	bat_cap_mAh = 4000;//4000mAh
+	bat_cap_mAh = 400;//400mAh
 
 	V_max = 4.300;
 	Q_max =bat_cap_mAh * 3600; // mAh -> mAseconds
@@ -35,11 +35,12 @@ std::cout << "\n V_cutoff =" << V_cutoff;
 	// 5V
 	vol = V_max;
 	// 1 ohm series Resistance
-	ser_res = 1.0;
+	ser_res = 0.99;
 	// 10mOhm internal resistance
 	int_res = 0.010;
 	// SW state OFF by default
 	SW_state = 0;
+	i_load_mA =0.0;
 }
 
 //Bat_cell Destructor
@@ -57,10 +58,20 @@ int Bat_cell::set_cap(int _mAh)
 	{ return -1;}
 }
 
+float Bat_cell::get_V_cutoff(){return V_cutoff;}
+float Bat_cell::get_int_res(){return int_res;}
+
+
 // get capacity
 int Bat_cell::get_cap()
 {
 		return bat_cap_mAh;
+}
+
+// get current load
+float Bat_cell::get_i_load()
+{
+		return i_load_mA;
 }
 
 /** set APIs**/
@@ -123,6 +134,8 @@ int Bat_cell::set_SW_state(bool sw_s, float load_curr)
 		vol = get_updated_bat_vol();
 		//update voltage, when SW turns off
 		i_load_mA	= 0.0;
+
+	std::cout << " check ";
 	}
 
 //update SW state

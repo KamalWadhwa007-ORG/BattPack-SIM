@@ -71,6 +71,10 @@ public:
 
 /* set SW_state with i_load(2nd arg), if SW = off, 2nd arg is ignored*/
 		int set_SW_state(bool,float);
+		float get_i_load();
+
+		float get_V_cutoff();
+		float get_int_res();
 
 };
 

@@ -128,7 +128,7 @@ test_cell.set_SW_state(0, _mA);
 test_cell.set_SW_state(1, _mA);
 V_temp = test_cell.get_vol();
 
-cout << i << ". " << V_temp << " V" << endl;
+cout << i << ". " << V_temp << " V  " << test_cell.get_i_load() << " mA" << endl;
 
 usleep(1000000);
 
